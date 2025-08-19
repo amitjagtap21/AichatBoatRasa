@@ -1,0 +1,257 @@
+2025-08-12 16:25:29,982 [DEBUG]  Available web server routes: 
+/conversations/<conversation_id:path>/messages     POST                           add_message
+/conversations/<conversation_id:path>/tracker/events POST                           append_events
+/webhooks/rasa                                     GET                            custom_webhook_RasaChatInput.health
+/webhooks/rasa/webhook                             POST                           custom_webhook_RasaChatInput.receive
+/webhooks/rest                                     GET                            custom_webhook_RestInput.health
+/webhooks/rest/webhook                             POST                           custom_webhook_RestInput.receive
+/model/test/intents                                POST                           evaluate_intents
+/model/test/stories                                POST                           evaluate_stories
+/conversations/<conversation_id:path>/execute      POST                           execute_action
+/domain                                            GET                            get_domain
+/                                                  GET                            hello
+/model                                             PUT                            load_model
+/model/parse                                       POST                           parse
+/conversations/<conversation_id:path>/predict      POST                           predict
+/conversations/<conversation_id:path>/tracker/events PUT                            replace_events
+/conversations/<conversation_id:path>/story        GET                            retrieve_story
+/conversations/<conversation_id:path>/tracker      GET                            retrieve_tracker
+/status                                            GET                            status
+/model/predict                                     POST                           tracker_predict
+/model/train                                       POST                           train
+/conversations/<conversation_id:path>/trigger_intent POST                           trigger_intent
+/model                                             DELETE                         unload_model
+/version                                           GET                            version
+2025-08-12 16:25:29,982 [INFO ]  Starting Rasa server on http://0.0.0.0:5005
+2025-08-12 16:25:29,982 [DEBUG]  Using the default number of Sanic workers (1).
+2025-08-12 16:25:30,991 [DEBUG]  Skipping telemetry reporting: no license hash found.
+2025-08-12 16:25:31,050 [DEBUG]  Connected to InMemoryTrackerStore.
+2025-08-12 16:25:31,052 [DEBUG]  Connected to lock store 'InMemoryLockStore'.
+2025-08-12 16:25:31,052 [DEBUG]  Instantiated NLG to 'TemplatedNaturalLanguageGenerator'.
+2025-08-12 16:25:31,054 [INFO ]  Loading model models\20250812-160018-constant-archipelago.tar.gz...
+2025-08-12 16:25:31,855 [DEBUG]  Extracted model to 'C:\Users\Admin\AppData\Local\Temp\tmp396lji_e'.
+2025-08-12 16:25:31,886 [DEBUG]  Node 'nlu_message_converter' loading 'NLUMessageConverter.load' and kwargs: '{}'.
+2025-08-12 16:25:31,886 [DEBUG]  Node 'run_WhitespaceTokenizer0' loading 'WhitespaceTokenizer.load' and kwargs: '{}'.
+2025-08-12 16:25:31,886 [DEBUG]  Node 'run_RegexFeaturizer1' loading 'RegexFeaturizer.load' and kwargs: '{}'.
+2025-08-12 16:25:31,886 [DEBUG]  Resource 'train_RegexFeaturizer1' was requested for reading.
+2025-08-12 16:25:31,886 [DEBUG]  Node 'run_LexicalSyntacticFeaturizer2' loading 'LexicalSyntacticFeaturizer.load' and kwargs: '{}'.
+2025-08-12 16:25:31,886 [DEBUG]  Resource 'train_LexicalSyntacticFeaturizer2' was requested for reading.
+2025-08-12 16:25:31,886 [DEBUG]  Node 'run_CountVectorsFeaturizer3' loading 'CountVectorsFeaturizer.load' and kwargs: '{}'.
+2025-08-12 16:25:31,886 [DEBUG]  Resource 'train_CountVectorsFeaturizer3' was requested for reading.
+2025-08-12 16:25:31,886 [DEBUG]  Node 'run_CountVectorsFeaturizer4' loading 'CountVectorsFeaturizer.load' and kwargs: '{}'.
+2025-08-12 16:25:31,886 [DEBUG]  Resource 'train_CountVectorsFeaturizer4' was requested for reading.
+2025-08-12 16:25:31,910 [DEBUG]  Node 'run_DIETClassifier5' loading 'DIETClassifier.load' and kwargs: '{}'.
+2025-08-12 16:25:31,910 [DEBUG]  Resource 'train_DIETClassifier5' was requested for reading.
+2025-08-12 16:25:31,918 [DEBUG]  Loading the model from C:\Users\Admin\AppData\Local\Temp\tmp299_rg_9\train_DIETClassifier5\DIETClassifier.tf_model with finetune_mode=False...
+2025-08-12 16:25:31,968 [DEBUG]  You specified 'DIET' to train entities, but no entities are present in the training data. Skipping training of entities.
+2025-08-12 16:25:32,014 [DEBUG]  Following metrics will be logged during training: 
+2025-08-12 16:25:32,014 [DEBUG]    t_loss (total loss)
+2025-08-12 16:25:32,014 [DEBUG]    i_acc (intent acc)
+2025-08-12 16:25:32,014 [DEBUG]    i_loss (intent loss)
+2025-08-12 16:25:45,331 [DEBUG]  Finished loading the model.
+2025-08-12 16:25:45,331 [DEBUG]  Node 'run_EntitySynonymMapper6' loading 'EntitySynonymMapper.load' and kwargs: '{}'.
+2025-08-12 16:25:45,331 [DEBUG]  Resource 'train_EntitySynonymMapper6' was requested for reading.
+2025-08-12 16:25:45,331 [DEBUG]  Failed to load ABCMeta from model storage. Resource 'train_EntitySynonymMapper6' doesn't exist.
+2025-08-12 16:25:45,331 [DEBUG]  Node 'run_ResponseSelector7' loading 'ResponseSelector.load' and kwargs: '{}'.
+2025-08-12 16:25:45,347 [DEBUG]  Resource 'train_ResponseSelector7' was requested for reading.
+2025-08-12 16:25:45,347 [DEBUG]  Failed to load ABCMeta from model storage. Resource 'train_ResponseSelector7' doesn't exist.
+2025-08-12 16:25:45,347 [DEBUG]  Resource 'train_ResponseSelector7' was requested for reading.
+2025-08-12 16:25:45,347 [DEBUG]  Failed to load ResponseSelector from model storage. Resource 'train_ResponseSelector7' doesn't exist.
+2025-08-12 16:25:45,347 [DEBUG]  Node 'run_FallbackClassifier8' loading 'FallbackClassifier.load' and kwargs: '{}'.
+2025-08-12 16:25:45,347 [DEBUG]  Node 'run_RegexMessageHandler' loading 'RegexMessageHandler.load' and kwargs: '{}'.
+2025-08-12 16:25:45,347 [DEBUG]  Node 'domain_provider' loading 'DomainProvider.load' and kwargs: '{}'.
+2025-08-12 16:25:45,347 [DEBUG]  Resource 'domain_provider' was requested for reading.
+2025-08-12 16:25:45,363 [DEBUG]  Node 'run_MemoizationPolicy0' loading 'MemoizationPolicy.load' and kwargs: '{}'.
+2025-08-12 16:25:45,363 [DEBUG]  Resource 'train_MemoizationPolicy0' was requested for reading.
+2025-08-12 16:25:45,363 [DEBUG]  Node 'run_RulePolicy1' loading 'RulePolicy.load' and kwargs: '{}'.
+2025-08-12 16:25:45,363 [DEBUG]  Resource 'train_RulePolicy1' was requested for reading.
+2025-08-12 16:25:45,379 [DEBUG]  Node 'run_UnexpecTEDIntentPolicy2' loading 'UnexpecTEDIntentPolicy.load' and kwargs: '{}'.
+2025-08-12 16:25:45,379 [DEBUG]  Resource 'train_UnexpecTEDIntentPolicy2' was requested for reading.
+2025-08-12 16:25:45,433 [DEBUG]  Loading the model from C:\Users\Admin\AppData\Local\Temp\tmp299_rg_9\train_UnexpecTEDIntentPolicy2\unexpected_intent_policy.tf_model with finetune_mode=False...
+2025-08-12 16:25:52,293 [ERROR]  Experienced exception while trying to serve
+Traceback (most recent call last):
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\sanic\app.py", line 1204, in run
+    serve_single(server_settings)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\sanic\server\runners.py", line 206, in serve_single
+    serve(**server_settings)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\sanic\server\runners.py", line 130, in serve
+    loop.run_until_complete(app._server_event("init", "before"))
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 636, in run_until_complete
+    self.run_forever()
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 603, in run_forever
+    self._run_once()
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 1909, in _run_once
+    handle._run()
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\sanic\app.py", line 2000, in _server_event
+    await self.dispatch(
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\sanic\signals.py", line 191, in dispatch
+    return await dispatch
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\sanic\signals.py", line 161, in _dispatch
+    retval = await maybe_coroutine
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\sanic\app.py", line 1524, in _listener
+    await maybe_coro
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\rasa\core\run.py", line 290, in load_agent_on_start
+    app.ctx.agent = await agent.load_agent(
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\rasa\core\agent.py", line 254, in load_agent
+    agent.load_model(model_path)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\rasa\core\agent.py", line 352, in load_model
+    self.processor = MessageProcessor(
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\rasa\core\processor.py", line 105, in __init__
+    self.model_filename, self.model_metadata, self.graph_runner = self._load_model(
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\rasa\core\processor.py", line 142, in _load_model
+    metadata, runner = loader.load_predict_graph_runner(
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\rasa\engine\loader.py", line 29, in load_predict_graph_runner
+    runner = graph_runner_class.create(
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\rasa\engine\runner\dask.py", line 51, in create
+    return cls(graph_schema, model_storage, execution_context, hooks)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\rasa\engine\runner\dask.py", line 37, in __init__
+    self._instantiated_nodes: Dict[Text, GraphNode] = self._instantiate_nodes(
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\rasa\engine\runner\dask.py", line 60, in _instantiate_nodes
+    return {
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\rasa\engine\runner\dask.py", line 61, in <dictcomp>
+    node_name: GraphNode.from_schema_node(
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\rasa\engine\graph.py", line 566, in from_schema_node
+    return cls(
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\rasa\engine\graph.py", line 392, in __init__
+    self._load_component()
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\rasa\engine\graph.py", line 403, in _load_component
+    self._component: GraphComponent = constructor(  # type: ignore[no-redef]
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\rasa\core\policies\ted_policy.py", line 1077, in load
+    return cls._load(
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\rasa\core\policies\ted_policy.py", line 1121, in _load
+    model = cls._load_tf_model(
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\rasa\core\policies\ted_policy.py", line 1170, in _load_tf_model
+    model = cls.model_class().load(
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\rasa\utils\tensorflow\models.py", line 445, in load
+    model.fit(data_generator, verbose=False)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\keras\utils\traceback_utils.py", line 65, in error_handler
+    return fn(*args, **kwargs)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\keras\engine\training.py", line 1685, in fit
+    tmp_logs = self.train_function(iterator)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\util\traceback_utils.py", line 150, in error_handler
+    return fn(*args, **kwargs)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\eager\polymorphic_function\polymorphic_function.py", line 894, in __call__
+    result = self._call(*args, **kwds)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\eager\polymorphic_function\polymorphic_function.py", line 959, in _call
+    return self._no_variable_creation_fn(*args, **kwds)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\eager\polymorphic_function\tracing_compiler.py", line 142, in __call__
+    filtered_flat_args) = self._maybe_define_function(args, kwargs)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\eager\polymorphic_function\tracing_compiler.py", line 396, in _maybe_define_function
+    concrete_function = self._create_concrete_function(
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\eager\polymorphic_function\tracing_compiler.py", line 300, in _create_concrete_function
+    func_graph_module.func_graph_from_py_func(
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\framework\func_graph.py", line 1214, in func_graph_from_py_func
+    func_outputs = python_func(*func_args, **func_kwargs)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\eager\polymorphic_function\polymorphic_function.py", line 667, in wrapped_fn
+    out = weak_wrapped_fn().__wrapped__(*args, **kwds)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\framework\func_graph.py", line 1189, in autograph_handler
+    return autograph.converted_call(
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\autograph\impl\api.py", line 439, in converted_call
+    result = converted_f(*effective_args, **kwargs)
+  File "C:\Users\Admin\AppData\Local\Temp\__autograph_generated_filel20d4np_.py", line 15, in tf__train_function
+    retval_ = ag__.converted_call(ag__.ld(step_function), (ag__.ld(self), ag__.ld(iterator)), None, fscope)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\autograph\impl\api.py", line 331, in converted_call
+    return _call_unconverted(f, args, kwargs, options, False)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\autograph\impl\api.py", line 459, in _call_unconverted
+    return f(*args)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\keras\engine\training.py", line 1268, in step_function
+    outputs = model.distribute_strategy.run(run_step, args=(data,))
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\distribute\distribute_lib.py", line 1316, in run
+    return self._extended.call_for_each_replica(fn, args=args, kwargs=kwargs)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\distribute\distribute_lib.py", line 2895, in call_for_each_replica
+    return self._call_for_each_replica(fn, args, kwargs)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\distribute\distribute_lib.py", line 3696, in _call_for_each_replica
+    return fn(*args, **kwargs)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\autograph\impl\api.py", line 689, in wrapper
+    return converted_call(f, args, kwargs, options=options)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\autograph\impl\api.py", line 377, in converted_call
+    return _call_unconverted(f, args, kwargs, options)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\autograph\impl\api.py", line 458, in _call_unconverted
+    return f(*args, **kwargs)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\keras\engine\training.py", line 1249, in run_step
+    outputs = model.train_step(data)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\rasa\utils\tensorflow\models.py", line 161, in train_step
+    prediction_loss = self.batch_loss(batch_in)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\rasa\core\policies\ted_policy.py", line 2013, in batch_loss
+    dialogue_in, text_output, text_sequence_lengths = self._process_batch_data(
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\rasa\core\policies\ted_policy.py", line 1813, in _process_batch_data
+    ) = self._encode_features_per_attribute(tf_batch_data, attribute)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\rasa\core\policies\ted_policy.py", line 1504, in _encode_features_per_attribute
+    return tf.cond(
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\util\traceback_utils.py", line 150, in error_handler
+    return fn(*args, **kwargs)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\util\dispatch.py", line 1176, in op_dispatch_handler
+    return dispatch_target(*args, **kwargs)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\ops\control_flow_ops.py", line 1427, in cond_for_tf_v2
+    return cond(pred, true_fn=true_fn, false_fn=false_fn, strict=True, name=name)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\util\traceback_utils.py", line 150, in error_handler
+    return fn(*args, **kwargs)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\util\dispatch.py", line 1176, in op_dispatch_handler
+    return dispatch_target(*args, **kwargs)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\util\deprecation.py", line 576, in new_func
+    return func(*args, **kwargs)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\ops\control_flow_ops.py", line 1210, in cond
+    return cond_v2.cond_v2(pred, true_fn, false_fn, name)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\ops\cond_v2.py", line 96, in cond_v2
+    return _build_cond(
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\ops\cond_v2.py", line 296, in _build_cond
+    tensors = util.run_as_function_for_tape_gradients(_make_op, cond_inputs)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\ops\control_flow_util_v2.py", line 387, in run_as_function_for_tape_gradients
+    results = function.defun_with_attributes(
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\eager\polymorphic_function\tracing_compiler.py", line 143, in __call__
+    return concrete_function._call_flat(
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\eager\polymorphic_function\monomorphic_function.py", line 1763, in _call_flat
+    forward_function, args_with_tangents = forward_backward.forward()
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\eager\polymorphic_function\monomorphic_function.py", line 1277, in forward
+    forward_function = self._functions.forward(
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\eager\polymorphic_function\monomorphic_function.py", line 1009, in forward
+    self._forward_and_backward_functions(inference_args, input_tangents))
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\eager\polymorphic_function\monomorphic_function.py", line 1238, in _forward_and_backward_functions
+    self._build_functions_for_outputs(
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\eager\polymorphic_function\monomorphic_function.py", line 729, in _build_functions_for_outputs
+    gradients_wrt_inputs = gradients_util._GradientsHelper(  # pylint: disable=protected-access
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\ops\gradients_util.py", line 695, in _GradientsHelper
+    in_grads = _MaybeCompile(grad_scope, op, func_call,
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\ops\gradients_util.py", line 329, in _MaybeCompile
+    return grad_fn()  # Exit early
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\ops\gradients_util.py", line 696, in <lambda>
+    lambda: grad_fn(op, *out_grads))
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\ops\cond_v2.py", line 121, in _IfGrad
+    true_grad_graph = _create_grad_func(
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\ops\cond_v2.py", line 430, in _create_grad_func
+    return func_graph_module.func_graph_from_py_func(
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\framework\func_graph.py", line 1214, in func_graph_from_py_func
+    func_outputs = python_func(*func_args, **func_kwargs)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\ops\cond_v2.py", line 432, in <lambda>
+    lambda: _grad_fn(func_graph, grads), [], {},
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\ops\cond_v2.py", line 421, in _grad_fn
+    result = gradients_util._GradientsHelper(
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\ops\gradients_util.py", line 695, in _GradientsHelper
+    in_grads = _MaybeCompile(grad_scope, op, func_call,
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\ops\gradients_util.py", line 329, in _MaybeCompile
+    return grad_fn()  # Exit early
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\ops\gradients_util.py", line 696, in <lambda>
+    lambda: grad_fn(op, *out_grads))
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\ops\math_grad.py", line 1384, in _MulGrad
+    gy = array_ops.reshape(
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\util\traceback_utils.py", line 150, in error_handler
+    return fn(*args, **kwargs)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\util\dispatch.py", line 1176, in op_dispatch_handler
+    return dispatch_target(*args, **kwargs)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\ops\array_ops.py", line 196, in reshape
+    result = gen_array_ops.reshape(tensor, shape, name)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\ops\gen_array_ops.py", line 10639, in reshape
+    _, _, _op, _outputs = _op_def_library._apply_op_helper(
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\framework\op_def_library.py", line 795, in _apply_op_helper
+    op = g._create_op_internal(op_type_name, inputs, dtypes=None,
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\framework\func_graph.py", line 707, in _create_op_internal
+    return super()._create_op_internal(  # pylint: disable=protected-access
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\framework\ops.py", line 3823, in _create_op_internal
+    self._create_op_helper(ret, compute_device=compute_device)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python310\lib\site-packages\tensorflow\python\framework\ops.py", line 3907, in _create_op_helper
+    if self._colocation_stack:
+KeyboardInterrupt

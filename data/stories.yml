@@ -1,0 +1,23 @@
+version: "3.1"
+
+stories:
+- story: insurance eligibility path
+  steps:
+    - intent: insurance_eligibility_check
+    - action: insurance_form
+    - active_loop: insurance_form
+    - slot_was_set:
+        - name: "Amit Jagtap"
+    - slot_was_set:
+        - dob: "1990-01-01"
+    - slot_was_set:
+        - income: 30000
+    - slot_was_set:
+        - insurance_type: "health"
+    - active_loop: null
+    - action: action_check_insurance_eligibility_api
+    
+- story: end conversation
+  steps:
+    - intent: goodbye
+    - action: utter_goodbye

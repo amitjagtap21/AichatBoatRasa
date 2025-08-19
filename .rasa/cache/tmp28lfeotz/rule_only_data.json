@@ -1,0 +1,8 @@
+{
+  "rule_only_slots": [
+    "response_key"
+  ],
+  "rule_only_loops": [
+    "insurance_form"
+  ]
+}

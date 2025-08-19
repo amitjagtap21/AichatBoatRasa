@@ -1,0 +1,46 @@
+version: "3.1"
+
+rules:
+- rule: greet user
+  steps:
+    - intent: greet
+    - slot_was_set:
+        - response_key: "utter_greet"
+    - action: action_unified_greet
+
+- rule: activate insurance form
+  steps:
+    - intent: insurance_eligibility_check
+    - action: insurance_form
+    - active_loop: insurance_form
+
+- rule: submit insurance form
+  condition:
+    - active_loop: insurance_form
+  steps:
+    - action: insurance_form
+    - active_loop: null
+    - action: action_check_insurance_eligibility_api
+
+- rule: Say goodbye anytime user says bye
+  steps:
+      - intent: goodbye
+      - action: utter_goodbye
+
+- rule: Interrupt form to say goodbye
+  condition:
+      - active_loop: insurance_form
+  steps:
+      - intent: goodbye
+      - action: action_deactivate_loop
+      - active_loop: null
+      - action: utter_goodbye
+
+- rule: Greet user
+  steps:
+    - intent: greet
+    - slot_was_set:
+        - response_key: "utter_greet"
+    - action: action_unified_greet
+
+
