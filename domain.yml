@@ -85,32 +85,32 @@ responses:
   
 
   utter_goodbye:
-    - text: "Goodbye! Have a nice day."
-      custom:
+    - custom:
+        text: "Goodbye! Have a nice day."
         flag: "goodbye_message"
         identity: "goodbye_message"
 
   utter_ask_name:
-    - text: "Please tell me your full name."
-      custom:
+    - custom:
+        text: "Please tell me your full name."
         flag: "full_name"
         identity: "full_name"
 
   utter_ask_dob:
-    - text: "What's your date of birth? (YYYY-MM-DD)"
-      custom:
+    - custom:
+        text: "What's your date of birth? (YYYY-MM-DD)"
         flag: "date_of_birth"
         identity: "date_of_birth"
 
   utter_ask_income:
-    - text: "What is your monthly income?"
-      custom:
+    - custom:
+        text: "What is your monthly income?"
         flag: "monthly_income"
         identity: "monthly_income"
 
   utter_ask_insurance_type:
-    - text: "What type of insurance do you want to check? (health/life/motor)"
-      custom:
+    - custom:
+        text: "What type of insurance do you want to check? (health/life/motor)"
         flag: "which_insurance"
         identity: "which_insurance"
 
