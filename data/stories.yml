@@ -1,23 +1,96 @@
 version: "3.1"
 
 stories:
-- story: insurance eligibility path
+# - story: user chooses application
+#   steps:
+#     - intent: greet
+#     - action: utter_greet
+#     - intent: choose_application
+#     - slot_was_set:
+#         - response_key: "utter_enrollment"
+#     - action: utter_terms
+#     - slot_was_set:
+#         - response_key: "utter_terms"
+#     - action: utter_terms
+    # - intent: choose_application
+    # # - slot_was_set:
+    # #     - response_key: "utter_enrollment"
+    # # - action: utter_enrollment
+    # - slot_was_set:
+    #     - response_key: "utter_terms"
+    # - action: utter_terms
+
+- story: Medicaid Application
   steps:
-    - intent: insurance_eligibility_check
-    - action: insurance_form
-    - active_loop: insurance_form
+    - intent: medicaid_application
+    - action: utter_terms
+
+- story: SNAP Application
+  steps:
+    - intent: snap_application
+    - action: utter_terms 
+
+- story: Both Medicaid Application & SNAP
+  steps:
+    - intent: both_applications
+    - action: utter_terms        
+
+- story: user agrees
+  steps:
+    - intent: agree_terms
+    - action: utter_agree
+
+- story: user applies for self
+  steps:
+    - intent: benefits_self
+    - action: utter_ask_state
+    - intent: provide_state
     - slot_was_set:
-        - name: "Amit Jagtap"
+        - state: "Florida"
+    - action: utter_confirm_state
+    - action: utter_living_situation
+    #- action: utter_ask_state
+
+- story: user applies for other
+  steps:
+    - intent: benefits_self
+    - action: utter_ask_state
+    - intent: provide_state
     - slot_was_set:
-        - dob: "1990-01-01"
-    - slot_was_set:
-        - income: 30000
-    - slot_was_set:
-        - insurance_type: "health"
-    - active_loop: null
-    - action: action_check_insurance_eligibility_api
-    
-- story: end conversation
+        - state: "Florida"
+    - action: utter_confirm_state
+    - action: utter_living_situation
+
+- story: user disagrees
+  steps:
+    - intent: disagree_terms
+    - action: utter_disagree
+
+- story: user says goodbye
   steps:
     - intent: goodbye
     - action: utter_goodbye
+
+- story: ask state
+  steps:
+    - intent: benefits_self
+    - action: utter_ask_state
+    - intent: provide_state
+    - slot_was_set:
+        - state: "Florida"
+    - action: utter_confirm_state
+    - action: utter_living_situation
+
+- story: Living Situation
+  steps:
+    - intent: living_situation
+    - action: utter_household
+    #- action: utter_confirm_household
+
+- story: Household Situation
+  steps:
+    - intent: household_special_situations
+    - slot_was_set:
+        - household: "Own Home"
+    - action: utter_confirm_household
+    - action: utter_request_id_proof

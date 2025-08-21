@@ -127,14 +127,52 @@ class ActionUnifiedGreet(Action):
         return "action_unified_greet"
 
     def run(self, dispatcher, tracker, domain):
-        # Grab both text and custom from domain.yml
-        resp = domain.get("responses", {}).get("utter_greet", [{}])[0]
+        key = tracker.get_slot("response_key")
+        if not key:
+            dispatcher.utter_message(text="⚠ No response_key provided")
+            return []
+
+        resp = domain.get("responses", {}).get(key, [{}])[0]
         text = resp.get("text", "")
         custom = resp.get("custom", {})
 
-        # Build ONE payload in `json_message`
         unified_payload = {"text": text, **custom}
+        dispatcher.utter_message(custom=unified_payload)
 
-        # Send ONLY json_message — no text arg
-        dispatcher.utter_message(json_message=unified_payload)
+        #dispatcher.utter_message(json_message=unified_payload)
         return []
+    
+
+# -------------------------------
+# Ask State (dropdown for all 50 US states)
+# -------------------------------
+class ActionAskState(Action):
+    def name(self) -> Text:
+        return "action_ask_state"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        states = [
+            "Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut",
+            "Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa",
+            "Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan",
+            "Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada",
+            "New Hampshire","New Jersey","New Mexico","New York","North Carolina",
+            "North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island",
+            "South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont",
+            "Virginia","Washington","West Virginia","Wisconsin","Wyoming"
+        ]
+
+        dispatcher.utter_message(
+    custom={
+        "payload": "dropdown",       # 👈 this matches the renderer key
+        "data": {
+            "options": [{"label": s, "value": s} for s in states]
+        }
+    }
+)
+        return []
+
+

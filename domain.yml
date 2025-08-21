@@ -3,123 +3,138 @@ version: "3.1"
 intents:
   - greet
   - goodbye
-  - insurance_eligibility_check
-  - provide_name
-  - provide_dob
-  - provide_income
-  - provide_insurance_type
+  - choose_application
+  - agree_terms
+  - disagree_terms
+  - benefits_self
+  - benefits_other
+  - provide_state
+  - medicaid_application
+  - snap_application
+  - both_applications
+  - living_situation
+  - household_special_situations
 
 entities:
-  - name
-  - dob
-  - income
-  - insurance_type
+  - state
+  - household
 
 slots:
-  name:
+  state:
     type: text
-    influence_conversation: true
     mappings:
       - type: from_entity
-        entity: name
-      - type: from_text
-        conditions:
-          - active_loop: insurance_form
-            requested_slot: name
+        entity: state
 
-  dob:
+  household:
     type: text
-    influence_conversation: true
     mappings:
       - type: from_entity
-        entity: dob
-      - type: from_text
-        conditions:
-          - active_loop: insurance_form
-            requested_slot: dob
-
-  income:
-    type: float
-    influence_conversation: true
-    mappings:
-      - type: from_entity
-        entity: income
-      - type: from_text
-        conditions:
-          - active_loop: insurance_form
-            requested_slot: income
-
-  insurance_type:
-    type: text
-    influence_conversation: true
-    mappings:
-      - type: from_entity
-        entity: insurance_type
-      - type: from_text
-        conditions:
-          - active_loop: insurance_form
-            requested_slot: insurance_type
+        entity: household
 
   response_key:
     type: text
-    influence_conversation: true
+    influence_conversation: false
     mappings:
       - type: from_text
 
-forms:
-  insurance_form:
-    required_slots:
-      - name
-      - dob
-      - income
-      - insurance_type
-    ignored_intents:
-      - goodbye
-
 responses:
+  utter_ask_state:
+    - text: "Please select the state you are applying for:"
+      buttons:
+        - title: "Florida"
+          payload: "/provide_state{\"state\":\"Florida\"}"
+        - title: "California"
+          payload: "/provide_state{\"state\":\"California\"}"
+        - title: "Texas"
+          payload: "/provide_state{\"state\":\"Texas\"}"
+        - title: "Alaska"
+          payload: "/provide_state{\"state\":\"Alaska\"}"
+        - title: "Indiana"
+          payload: "/provide_state{\"state\":\"Indiana\"}"
+        - title: "Maryland"
+          payload: "/provide_state{\"state\":\"Maryland\"}"
+        - title: "New York"
+          payload: "/provide_state{\"state\":\"New York\"}"
+        - title: "Other"
+          payload: "/provide_state{\"state\":\"Other\"}"
+
   utter_greet:
-    - text: "Hi I'm Freeman Filling! Need help with SNAP or Medicaid? Select option to proceed"
-      custom:
-        flag: "intro_message"
-        identity: "freeman_filling_bot"
-  
+    - text: "Hi I'm Freeman Filling! Need help with SNAP or Medicaid?"
+      buttons:
+        - title: "Medicaid Application"
+          payload: "/medicaid_application"
+        - title: "SNAP Application"
+          payload: "/snap_application"
+        - title: "Both Medicaid Application & SNAP"
+          payload: "/both_applications"
 
   utter_goodbye:
-    - custom:
-        text: "Goodbye! Have a nice day."
-        flag: "goodbye_message"
-        identity: "goodbye_message"
+    - text: "Goodbye! Have a nice day."
 
-  utter_ask_name:
-    - custom:
-        text: "Please tell me your full name."
-        flag: "full_name"
-        identity: "full_name"
+  utter_enrollment:
+    - text: "Are you enrolled with us?"
 
-  utter_ask_dob:
-    - custom:
-        text: "What's your date of birth? (YYYY-MM-DD)"
-        flag: "date_of_birth"
-        identity: "date_of_birth"
+  utter_terms:
+    - text: "Please agree with terms & conditions to proceed."
+      buttons:
+        - title: "Agree"
+          payload: "/agree_terms"
+        - title: "Disagree"
+          payload: "/disagree_terms"
 
-  utter_ask_income:
-    - custom:
-        text: "What is your monthly income?"
-        flag: "monthly_income"
-        identity: "monthly_income"
+  utter_agree:
+    - text: "Are you applying benefits for yourself?"
+      buttons:
+        - title: "Self"
+          payload: "/benefits_self"
+        - title: "Other"
+          payload: "/benefits_other"
 
-  utter_ask_insurance_type:
-    - custom:
-        text: "What type of insurance do you want to check? (health/life/motor)"
-        flag: "which_insurance"
-        identity: "which_insurance"
+      
+  
+  utter_benefit_other:
+    - text: "You are applying benefits for someone else."
+
+  utter_disagree:
+    - text: "You must agree to proceed."
+
+  utter_confirm_state:
+    - text: "You selected {state}. Let’s continue your application."
+  
+  utter_confirm_household:
+    - text: "You selected {household}. Let’s continue your application."
+
+  utter_request_id_proof:
+    - text: "Please upload a valid ID proof (e.g., Driver’s License, Passport)."
+      custom:
+        data:
+          type: "file_upload"
+
+  utter_living_situation:
+    - text: "Please select your living situation."
+      buttons:
+        - title: "Own Home"
+          payload: "/living_situation{\"situation\":\"Own Home\"}"
+        - title: "Rent Home"
+          payload: "/living_situation{\"situation\":\"Rent Home\"}"
+        - title: "Shelter"
+          payload: "/living_situation{\"situation\":\"shelter\"}"
+        - title: "Staying with friend"
+          payload: "/living_situation{\"situation\":\"Staying with friend\"}"
+        - title: "Homeless"
+          payload: "/living_situation{\"situation\":\"Homeless\"}"
+
+  utter_household:
+    - text: "Please select your household special situations"
+      buttons:
+        - title: "Tax filer"
+          payload: "/household_special_situations{\"household\":\"Tax filer\"}"
+        - title: "Public Assistance"
+          payload: "/household_special_situations{\"household\":\"Public Assistance\"}"
+        - title: "Military service"
+          payload: "/household_special_situations{\"household\":\"Military service\"}"
 
 actions:
-  - action_check_insurance_eligibility_api
-  - action_reset_slots
-  - action_reset_all_slots
   - action_unified_greet
-
-session_config:
-  session_expiration_time: 0  # 0 ka matlab har nayi conversation me reset hoga
-  carry_over_slots_to_new_session: false
+  - action_ask_state

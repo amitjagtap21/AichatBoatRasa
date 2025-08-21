@@ -1,78 +1,57 @@
 version: "3.1"
 
 nlu:
-
-## Greet Intent
 - intent: greet
   examples: |
     - hi
     - hello
     - hey
-    - good morning
-    - good evening
-    - hi there
-    - hey bot
-    - hello there
 
-## Goodbye Intent
 - intent: goodbye
   examples: |
     - bye
     - goodbye
-    - see you
-    - talk to you later
-    - see ya
-    - have a nice day
+    - see you later
 
-## Insurance Eligibility Check Intent
-- intent: insurance_eligibility_check
+- intent: choose_application
   examples: |
-    - I want to check insurance eligibility
-    - Can you check if I am eligible for health insurance?
-    - Check if I can get health insurance
-    - Am I eligible for life insurance?
-    - Please check my eligibility for insurance
-    - I want to see if I qualify for motor insurance
-    - Can you check my insurance eligibility?
+    - Medicaid Application
+    - SNAP Application
+    - Both Medicaid Application & SNAP
 
-## Provide Name
-- intent: provide_name
+- intent: medicaid_application
   examples: |
-    - My name is Amit Jagtap
-    - Amit Jagtap
-    - I am Rahul
-    - Rahul Sharma
-    - The name is Priya
-    - Priya Verma
-    - It's Suresh Kumar
+    - Medicaid Application
+    - Medicaid
 
-## Provide DOB
-- intent: provide_dob
+- intent: snap_application
   examples: |
-    - 1990-01-01
-    - 05-08-1992
-    - My date of birth is 1985-06-15
-    - I was born on 1999-12-30
-    - 15th August 1990
-    - DOB is 1975-03-21
+    - SNAP Application
+    - SNAP
+    - snap
 
-## Provide Income
-- intent: provide_income
+- intent: both_applications
   examples: |
-    - 25000
-    - 50000
-    - My monthly income is 30000
-    - I earn 40000 per month
-    - Around 45000
-    - About 20000
+    - Both Medicaid Application & SNAP
+    - Both
+    - both
+    - Medicaid and snap
 
-## Provide Insurance Type
-- intent: provide_insurance_type
+- intent: agree_terms
   examples: |
-    - health
-    - life
-    - motor
-    - I am looking for health insurance
-    - I want life insurance
-    - motor insurance
-    - health plan
+    - Agree
+    - I agree
+    - yes
+
+- intent: disagree_terms
+  examples: |
+    - Disagree
+    - I do not agree
+    - no
+
+- intent: provide_state
+  examples: |
+    - [Florida](state)
+    - [California](state)
+    - [Texas](state)
+    - [Alaska](state)

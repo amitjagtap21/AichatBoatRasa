@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Freeman Filling — Medicaid & SNAP Help</title>
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Basic Styling -->
+  <style>
+    :root{
+      --brand:#002e5b;       /* header + accents */
+      --brand-2:#2e7d32;     /* CTA + chat primaryColor */
+      --bg:#0b1220;          /* hero gradient base */
+      --text:#111827;
+      --muted:#6b7280;
+      --card:#ffffff;
+      --soft:#f7fafc;
+      --ring:rgba(46,125,50,.15);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      color:var(--text);
+      background:linear-gradient(180deg,#f7fafc 0%, #ffffff 100%);
+    }
+
+    /* Top Nav */
+    .nav{
+      position:sticky;top:0;z-index:10;
+      backdrop-filter:saturate(120%) blur(6px);
+      background:rgba(255,255,255,.8);
+      border-bottom:1px solid #eef2f7;
+    }
+    .nav__inner{
+      max-width:1120px;margin:0 auto;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:12px 20px;
+    }
+    .brand{
+      display:flex;align-items:center;gap:10px;font-weight:700;color:var(--brand);
+    }
+    .brand__logo{
+      width:36px;height:36px;border-radius:10px;
+      background: radial-gradient(120% 120% at 0% 0%, var(--brand) 0%, #0f5aa3 60%, #5aa5e2 100%);
+      box-shadow:0 6px 14px rgba(0,46,91,.25);
+    }
+    .nav__cta{
+      padding:10px 16px;border-radius:12px;border:none;
+      background:var(--brand-2);color:#fff;font-weight:600;cursor:pointer;
+      box-shadow:0 8px 24px var(--ring);
+      transition:transform .08s ease, box-shadow .2s ease;
+    }
+    .nav__cta:hover{transform:translateY(-1px);box-shadow:0 12px 28px var(--ring)}
+
+    /* Hero */
+    .hero{
+      position:relative;overflow:hidden;
+      background:
+        radial-gradient(1200px 400px at 10% -20%, #e8f3ff 0%, transparent 60%),
+        radial-gradient(1000px 400px at 90% -10%, #e9f8ef 0%, transparent 60%),
+        linear-gradient(180deg,#fff 0%, #f9fbfd 100%);
+      border-bottom:1px solid #eef2f7;
+    }
+    .hero__inner{max-width:1120px;margin:0 auto;padding:60px 20px 48px;display:grid;grid-template-columns:1.1fr .9fr;gap:24px}
+    @media (max-width:900px){.hero__inner{grid-template-columns:1fr}}
+    .h-eyebrow{color:var(--brand-2);font-weight:700;letter-spacing:.06em;font-size:.85rem;text-transform:uppercase}
+    .h-title{margin:8px 0 12px;font-size:clamp(28px,6vw,48px);line-height:1.1;color:#0b1220}
+    .h-sub{color:var(--muted);font-size:1.05rem;max-width:48ch}
+    .h-cta{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap}
+    .btn{
+      padding:12px 18px;border-radius:14px;border:1px solid transparent;cursor:pointer;font-weight:600
+    }
+    .btn--primary{background:var(--brand-2);color:#fff;box-shadow:0 8px 24px var(--ring)}
+    .btn--ghost{background:#fff;color:var(--brand);border-color:#e5ecf3}
+    .hero__card{
+      margin-left:auto;background:var(--card);border:1px solid #eef2f7;border-radius:20px;
+      padding:22px;box-shadow:0 10px 30px rgba(16,24,40,.06)
+    }
+    .hero__row{display:flex;align-items:center;gap:12px;margin:12px 0}
+    .tick{
+      width:26px;height:26px;border-radius:999px;background:#e8f5ee;color:var(--brand-2);
+      display:grid;place-items:center;font-weight:900
+    }
+
+    /* Features */
+    .section{max-width:1120px;margin:0 auto;padding:40px 20px}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    @media (max-width:900px){.cards{grid-template-columns:1fr}}
+    .card{
+      background:var(--card);border:1px solid #eef2f7;border-radius:18px;padding:20px;
+      box-shadow:0 8px 24px rgba(16,24,40,.05)
+    }
+    .card h3{margin:0 0 6px}
+    .card p{margin:0;color:var(--muted)}
+
+    /* FAQ */
+    .faq{max-width:900px;margin:0 auto}
+    details{background:var(--card);border:1px solid #eef2f7;border-radius:14px;padding:14px 16px;margin:10px 0}
+    summary{font-weight:600;cursor:pointer}
+
+    /* Footer */
+    .footer{padding:28px 20px;border-top:1px solid #eef2f7;color:var(--muted);text-align:center}
+
+    /* Connection banner */
+    .status{
+      position:fixed;left:16px;bottom:16px;z-index:5;
+      background:#111827;color:#fff;padding:10px 12px;border-radius:12px;font-size:.9rem;
+      display:none;box-shadow:0 8px 24px rgba(0,0,0,.18)
+    }
+    .status--bad{display:block;background:#b91c1c}
+    .status--ok{display:block;background:#065f46}
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f2f5;
+    }
+
+    /* Overlay */
+    .modal-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 10011; /* 👈 Raise this above the chat widget */
+}
+
+
+    /* Modal content */
+    .modal-content {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      width: 300px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      text-align: center;
+      position: relative;
+    }
+
+    .modal-content h2 {
+      margin-top: 0;
+      font-size: 20px;
+    }
+
+    .upload-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #0078D4;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+
+    .upload-btn:hover {
+      background-color: #005ea2;
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px; right: 10px;
+      background: transparent;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <div class="nav">
+    <div class="nav__inner">
+      <div class="brand">
+        <div class="brand__logo" aria-hidden="true"></div>
+        Freeman Filling
+      </div>
+      <button class="nav__cta" onclick="document.querySelector('.btn--primary').click()">Start Chat</button>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="hero__inner">
+      <div>
+        <div class="h-eyebrow">Smart Assistance</div>
+        <h1 class="h-title">Get help with Medicaid & SNAP — fast, friendly, and accurate.</h1>
+        <p class="h-sub">Freeman Filling guides you through applications step-by-step, asks only what’s needed, and keeps things simple.</p>
+        <div class="h-cta">
+          <button class="btn btn--primary" onclick="window.toggleWebchat(true)">Chat Now</button>
+          <a class="btn btn--ghost" href="#faq">Learn More</a>
+        </div>
+
+        <div class="hero__card" role="region" aria-label="Highlights">
+          <div class="hero__row"><div class="tick">✓</div> Guided steps with quick choices (no long forms)</div>
+          <div class="hero__row"><div class="tick">✓</div> Secure & private conversation</div>
+          <div class="hero__row"><div class="tick">✓</div> Works on desktop & mobile</div>
+        </div>
+      </div>
+
+      <div>
+        <!-- Decorative mock panel -->
+        <div class="hero__card">
+          <h3 style="margin-top:0">What can I do here?</h3>
+          <p class="h-sub" style="margin:8px 0 0">Ask eligibility questions, start Medicaid or SNAP, or both — Freeman will guide you and remember your choices.</p>
+          <div style="height:14px"></div>
+          <div class="cards" style="grid-template-columns:1fr;gap:10px">
+            <div class="card"><strong>Quick Replies</strong><br/><span class="h-sub">Choose options like <em>Medicaid</em>, <em>SNAP</em>, <em>State</em> with one tap.</span></div>
+            <div class="card"><strong>Human-friendly</strong><br/><span class="h-sub">No jargon. Clear steps and confirmations.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Features -->
+  <section class="section">
+    <div class="cards">
+      <div class="card">
+        <h3>Guided Applications</h3>
+        <p>From the first question to submit — no dead ends.</p>
+      </div>
+      <div class="card">
+        <h3>Fast Choices</h3>
+        <p>Buttons for common answers — less typing, fewer errors.</p>
+      </div>
+      <div class="card">
+        <h3>Secure by Design</h3>
+        <p>Your data stays between you and the assistant.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="section faq">
+    <h2>Frequently Asked Questions</h2>
+    <details>
+      <summary>Do I need an account?</summary>
+      <p>No. You can start chatting right away.</p>
+    </details>
+    <details>
+      <summary>What if I choose the wrong option?</summary>
+      <p>You can always change your choice — the assistant will confirm key steps.</p>
+    </details>
+    <details>
+      <summary>Is this available on mobile?</summary>
+      <p>Yes. The chat widget works great on phones and tablets.</p>
+    </details>
+  </section>
+
+  <div class="footer">© <span id="year"></span> Freeman Filling. All rights reserved.</div>
+
+  <!-- Connection status toast -->
+  <div id="status" class="status" role="status" aria-live="polite"></div>
+
+  <div class="modal-overlay" id="uploadModal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal()">×</button>
+      <h2>Select a file to upload</h2>
+      <label for="fileInput" class="upload-btn">Choose File</label>
+      <input type="file" id="fileInput" onchange="handleFileUpload(event)">
+    </div>
+  </div>
+
+
+  <!-- Rasa Webchat -->
+  <script src="https://cdn.jsdelivr.net/npm/rasa-webchat/lib/index.min.js"></script>
+  <script>
+  (function () {
+    // Load Rasa Webchat script
+    const script = document.createElement("script");
+    script.src = "https://cdn.jsdelivr.net/npm/rasa-webchat/lib/index.js";
+    script.async = true;
+
+    script.onload = () => {
+      let webchatInstance = null;
+
+      // Initialize Webchat
+      webchatInstance = window.WebChat.default(
+        {
+          initPayload: "/greet",
+          socketUrl: "http://localhost:8098",
+          socketPath: "/socket.io/",
+          title: "Freeman Filling (Medicaid)",
+          subtitle: "Medicaid & SNAP Help",
+          profileAvatar: "https://cdn-icons-png.flaticon.com/512/194/194938.png",
+          showMessageDate: true,
+          primaryColor: "#2e7d32",
+
+          // Capture the instance
+          onLoad: (instance) => {
+            webchatInstance = instance;
+            console.log("✅ Webchat loaded");
+          },
+
+          onSocketEvent: {
+            bot_uttered: (msg) => {
+              console.log("📩 Bot message received:", msg);
+
+              // Trigger file picker if payload is 'file_upload'
+              if (msg?.type === "file_upload") {
+                console.log("📂 Triggering file picker...");
+
+                const fileInput = document.createElement("input");
+                fileInput.type = "file";
+                fileInput.style.display = "none";
+                document.body.appendChild(fileInput);
+
+                fileInput.addEventListener("change", (event) => {
+                  const file = event.target.files[0];
+                  if (file) {
+                    console.log("📤 File selected:", file.name);
+                    
+                    // Send filename as intent to Rasa
+                    if (webchatInstance) {
+                      webchatInstance.send(
+                        `/file_uploaded{"filename":"${file.name}"}`
+                      );
+                    }
+                  }
+                  fileInput.remove();
+                });
+
+                fileInput.click(); // open file picker immediately
+              }
+            },
+          },
+        },
+        null
+      );
+    };
+
+    document.head.appendChild(script);
+  })();
+</script>
+
+
+
+  <!-- Webchat mount point (the widget injects itself; keeping this for clarity) -->
+  <div id="webchat"></div>
+</body>
+<style>
+  /* Chat header */
+  .rw-header {
+    background-color: #002e5b !important; /* dark green */
+    color: #fff !important;
+    font-weight: bold;
+  }
+
+  /* Bot messages */
+  .rw-response {
+    background-color: #f1f8e9 !important; /* light green background */
+    color: #333 !important;
+    border-radius: 12px !important;
+  }
+
+  /* User messages */
+  .rw-client {
+    background-color: #002e5b !important; /* soft green bubble */
+    color: #fff !important;
+    border-radius: 12px !important;
+  }
+
+  /* Buttons inside messages */
+  .rw-reply {
+    background: #fff !important;
+    color: #002e5b !important;
+    border: 1px solid #002e5b !important;
+    border-radius: 8px !important;
+    padding: 5px 10px;
+  }
+  .rw-reply:hover {
+    background: #002e5b !important;
+    color: #fff !important;
+  }
+
+  /* Input bar */
+  .rw-sender {
+    border-top: 1px solid #ddd !important;
+    background: #fafafa !important;
+  }
+  .rw-send {
+    color: #002e5b !important;
+  }
+
+  /* Floating button */
+  .rw-launcher {
+    background-color: #002e5b !important;
+  }
+</style>
+</html>
