@@ -11,6 +11,13 @@ rules:
     - intent: greet
     - action: utter_greet
 
+- rule: Ask for ID proof only if not uploaded
+  condition:
+     - slot_was_set:
+        - id_proof: null
+  steps:
+    - action: utter_request_id_proof
+
 # - rule: When user applies for self → ask state
 #   steps:
 #     - intent: benefits_self

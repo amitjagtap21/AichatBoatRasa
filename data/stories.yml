@@ -94,3 +94,12 @@ stories:
         - household: "Own Home"
     - action: utter_confirm_household
     - action: utter_request_id_proof
+
+- story: Handle file upload
+  steps:
+    - intent: file_uploaded
+    - action: action_handle_file
+    - action: action_extract_file_data
+    - action: utter_file_processed
+
+

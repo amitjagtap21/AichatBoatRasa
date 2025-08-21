@@ -55,3 +55,7 @@ nlu:
     - [California](state)
     - [Texas](state)
     - [Alaska](state)
+
+- intent: file_uploaded
+  examples: |
+    - Uploaded file [Id-proof2.jpg](filename)

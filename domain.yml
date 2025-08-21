@@ -14,12 +14,36 @@ intents:
   - both_applications
   - living_situation
   - household_special_situations
+  - file_uploaded
 
 entities:
   - state
   - household
+  - filename
+  - content
 
 slots:
+  id_proof:
+    type: text
+    influence_conversation: false
+    initial_value: null
+    mappings:
+      - type: from_text
+
+  filename:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: filename
+
+  content:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: content
+
   state:
     type: text
     mappings:
@@ -33,6 +57,54 @@ slots:
         entity: household
 
   response_key:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+
+  extracted_name:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+
+  extracted_dob:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+
+  extracted_id_number:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+
+  extracted_address:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+
+  extracted_issue_date:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+
+  extracted_expiry_date:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+
+  extracted_gender:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+
+  extracted_height:
     type: text
     influence_conversation: false
     mappings:
@@ -135,6 +207,35 @@ responses:
         - title: "Military service"
           payload: "/household_special_situations{\"household\":\"Military service\"}"
 
+  utter_file_received:
+    - text: "✅ test I extracted the following details:\n- Name: {extracted_name}\n- DOB: {extracted_dob}\n- ID Number: {extracted_id_number}"
+
+  utter_file_processed:
+    - text: "✅ Extracted Details"
+      custom:
+        data:
+          type: "details_card"
+          title: "✅ Extracted Details"
+          fields:
+            - label: "Name"
+              value: "{extracted_name}"
+            - label: "DOB"
+              value: "{extracted_dob}"
+            - label: "ID Number"
+              value: "{extracted_id_number}"
+            - label: "Address"
+              value: "{extracted_address}"
+            - label: "Issue Date"
+              value: "{extracted_issue_date}"
+            - label: "Expiry Date"
+              value: "{extracted_expiry_date}"
+            - label: "Gender"
+              value: "{extracted_gender}"
+            - label: "Height"
+              value: "{extracted_height}"
+
 actions:
   - action_unified_greet
   - action_ask_state
+  - action_handle_file
+  - action_extract_file_data
