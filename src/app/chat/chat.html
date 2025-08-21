@@ -1,0 +1,97 @@
+<div class="chat-container">
+  <!-- Sidebar -->
+  <div class="chat-sidebar">
+    <h2>Freeman Filling</h2>
+    <ul>
+      <li class="active">Medicaid Bot</li>
+      <li>Documents</li>
+      <li>History</li>
+    </ul>
+  </div>
+
+  <!-- Chat Window -->
+  <div class="chat-window">
+    <div class="chat-header">
+      <h3>Freeman Filing</h3>
+    </div>
+
+    <div class="chat-messages messages">
+      <!-- Example messages -->
+       <!-- <div *ngIf="messages.length === 0" class="chat-placeholder">
+          <div class="placeholder-icon">💬</div>
+          <div class="placeholder-text">Welcome! How can we help you today?</div>
+        </div> -->
+      <div *ngFor="let m of messages" class="{{ m.buttons  ? '' : 'message' }} " [ngClass]="m.from">
+          <div class="  {{ m.from === 'user' ? 'You' : 'bot' }}" *ngIf="m.text">
+            {{ m.text }}
+            <div class="timestamp">{{ m.timestamp | date:'shortTime' }}</div>
+
+          </div>
+          <!-- Quick-reply buttons -->
+          <div *ngIf="m.buttons" class="slot-options">
+            <button *ngFor="let btn of m.buttons"
+                    class="chat-btn"
+                    (click)="onButtonClick(m, btn)" [disabled]="m.buttonsDisabled">
+              {{ btn.title }}
+            </button>
+          </div>
+
+          <!-- Details Card -->
+    <div *ngIf="m.type === 'details_card'" class="bot-card">
+      <h4>{{ m.title }}</h4>
+      <div class="card-field" *ngFor="let field of m.fields">
+        <strong>{{ field.label }}:</strong> {{ field.value }}
+      </div>
+    </div>
+
+    <!-- <div *ngIf="m.from === 'bot' && m.custom?.type === 'file_upload'" class="file-upload">
+        <input type="file" (change)="onFileSelected($event)" />
+      </div> -->
+<div *ngIf="m.from === 'bot' && m.custom?.type === 'file_upload'" class="file-upload">
+  <label for="fileInput" class="upload-label">📁 Choose File</label>
+  <input type="file" id="fileInput" (change)="onFileSelected($event)" />
+</div>
+
+     
+
+      <!-- ✅ Dynamic slot-based inputs -->
+      <div *ngIf="m.from === 'bot' && m.currentSlot === 'name'" class="slot-input">
+        <input type="text"
+               [(ngModel)]="formInputs['name']"
+               placeholder="Enter your full name"
+               (keyup.enter)="send(formInputs['name'])" />
+      </div>
+
+      <div *ngIf="m.from === 'bot' && m.currentSlot === 'dob'" class="slot-input">
+        <input type="date"
+               [(ngModel)]="formInputs['dob']"
+               (change)="send(formInputs['dob'])" />
+      </div>
+
+      <div *ngIf="m.from === 'bot' && m.currentSlot === 'income'" class="slot-input">
+        <input type="number"
+               [(ngModel)]="formInputs['income']"
+               placeholder="Enter your monthly income"
+               (keyup.enter)="send(formInputs['income'])" />
+      </div>
+
+      <div *ngIf="m.from === 'bot' && m.currentSlot === 'insurance_type'" class="slot-options">
+        <button *ngFor="let opt of ['Health', 'Life', 'Motor']"
+                (click)="formInputs['insurance_type'] = opt; sendSlotValue()">
+          {{ opt }}
+        </button>
+      </div>
+
+      </div>
+      
+    </div>
+
+    <!-- Input -->
+    <div class="chat-input">
+      <input  #chatInput [(ngModel)]="userInput"
+           (keyup.enter)="send()"
+           placeholder="Type a message..." />
+    <button (click)="send()" class="send-btn">Send</button>
+    </div>
+  </div>
+</div>
